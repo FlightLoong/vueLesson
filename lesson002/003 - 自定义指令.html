@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+    1. 为什么需要自定义指令
+      内置指令不满足业务的需求
+
+    2. 自定义指令语法
+      Vue.directive(指令名字, { 逻辑代码 })
+
+    3. 注意事项
+      自定义指令名字前面不需要加 "v-"，但是在使用的时候需要加上 "v-"
+  </pre>
+
+  <div id="app">
+    <input type="text" v-focus>
+  </div>
+
+  <script>
+    // 自定义指令，directive
+    // 自定义指令不需要加 v-
+    Vue.directive('focus', {
+      // el 就是指使用了 自定义指令的那个元素
+      inserted: function (el) {
+        el.focus()
+      }
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      }
+    });
+  </script>
+</body>
+
+</html>

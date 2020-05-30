@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    如果使用 axios 发送 post 以及 put 请求
+    那么方法的第二个参数是一个对象，没有 params
+    URLSearchParams() --- 了解就可以，
+
+  </pre>
+
+  <script>
+
+    // axios.post('http://localhost:3000/axios', {
+    //   uname: 'heima',
+    //   pwd: 123456
+    // }).then(function (res) {
+    //   console.log(res.data)
+    // })
+
+    // const params = new URLSearchParams()
+    // params.append('uname', 'heima')
+    // params.append('pwd', 1234567)
+
+    // axios.post('http://localhost:3000/axios', params).then(function (res) {
+    //   console.log(res.data)
+    // })
+
+    axios.put('http://localhost:3000/axios/123', {
+      uname: 'heima',
+      pwd: 123456
+    }).then(function (res) {
+      console.log(res.data)
+    })
+
+  </script>
+</body>
+
+</html>

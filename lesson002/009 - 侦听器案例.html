@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <span>用户名：</span>
+      <span>
+        <input type="text" v-model.lazy="username">
+      </span>
+      <span>{{tip}}</span>
+    </div>
+  </div>
+
+  <script>
+    /*
+      1. 分析需要使用那些数据，把数据进行声明
+      2. 需要失去焦点的时候，触发事件，需要使用 表单修饰符 lazy
+      3. 定义 watch ，监听 username
+      4. 在 methods 创建业务逻辑方法，在 watch 中调用
+    */
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        username: '',
+        tip: ''
+      },
+      methods: {
+        handle: function (newVal) {
+          setTimeout(() => {
+            if (newVal === 'admin') {
+              this.tip = '用户名已存在……'
+            } else {
+              this.tip = '用户名验证通过……'
+            }
+          }, 2000)
+        }
+      },
+      watch: {
+        username: function (newVal, oldVal) {
+          this.handle(newVal)
+          this.tip = '验证中……'
+        }
+      },
+      computed: {
+
+      },
+    });
+
+  </script>
+</body>
+
+</html>

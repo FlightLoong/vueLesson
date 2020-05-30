@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    1、axios 是一个库，是一个发送 http 请求的一个库，可以用在浏览器和 node.js 中
+
+      它是基于 Promise 进行开发的，
+      底层就是采用 XMLHttpRequest
+
+  </pre>
+
+  <script>
+
+    axios.get('http://localhost:3000/data').then(function (res) {
+      console.log(res.data)
+    })
+
+  </script>
+</body>
+
+</html>

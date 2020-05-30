@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+
+    .border {
+      border: 2px solid lightseagreen;
+    }
+
+    .height {
+      height: 300px;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- 绑定挂一个对象，对象的是属性是 CSS 属性，属性值是 data 中声明的变量 -->
+    <div v-bind:style="{ width: wStyle, height: hStyle, backgroundColor: bgc}"></div>
+
+    <!-- 将样式直接提取成一个对象，提取出来的对象 -->
+    <div :style="objStyle"></div>
+    
+    <!-- 数组写法， 数组的每一项是一个对象 -->
+    <div :style="[objStyle]"></div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '.app',
+      data: {
+        wStyle: '100px',
+        hStyle: '100px',
+        bgc: 'lightgreen',
+        objStyle: {
+          width: '100px',
+          height: '100px',
+          backgroundColor: 'lightgreen'
+        }
+      },
+      methods: {
+
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    1、v-if 和 v-show 的区别 ☆☆☆☆☆
+
+      v-if 是把元素从 DOM 结构中直接移除
+      v-show 是通过 CSS 将元素隐藏和显示
+
+    2、 使用的时候如何选择
+
+      如果一个元素需要频繁的渲染，那么这时候使用 v-show，对性能损耗比较少
+      如果 一个元素隐藏和显示后，并不会频繁的进行操作，这时候使用 v-if
+  -->
+
+  <div class="app">
+    <p v-if="age < 18">还是小孩子</p>
+    <p v-else-if="age == 18">成年啦</p>
+    <p v-else>老司机</p>
+
+    <p v-show="isFlag">我是 P 元素</p>
+
+    <button @click="change">按钮</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '.app',
+      data: {
+        age: 18,
+        isFlag: false
+      },
+      methods: {
+        change: function () {
+          this.age = 28
+          this.isFlag = !this.isFlag
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

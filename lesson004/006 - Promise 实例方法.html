@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+      1、Promise实例方法
+
+        注意是 实例方法，
+        实例方法是在 prototype 中的，只能够通过 Promise 的实例对象进行访问
+
+        总共有三个
+          .then --- 里面有俩个参数，成功和错误都可以处理
+          .catch  --- 只处理错误的返回结果
+          .finally --- 无论结果成功与否，都会执行
+  </pre>
+
+  <script>
+
+    function getData(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url)
+        xhr.send(null)
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState != 4) return;
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            resolve(xhr.responseText)
+          } else {
+            reject('错误')
+          }
+        }
+      })
+    }
+
+    // getData('http://localhost:3000/data')
+    //   .then(function (data) {
+    //     console.log(data)
+    //   })
+    //   .catch(function (err) {
+    //     console.log(err)
+    //   })
+    //   .finally(function () {
+    //     console.log('都会执行')
+    //   })
+
+    getData('http://localhost:3000/data')
+      .then(function (data) {
+        console.log(data)
+      }, function (err) {
+        console.log(err)
+      })
+      .finally(function () {
+        console.log('都会执行')
+      })
+  </script>
+</body>
+
+</html>

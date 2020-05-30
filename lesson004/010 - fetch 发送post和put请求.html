@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+
+    1、fetch 如果想发送 post 以及 put 请求
+
+      需要在 body 中配置参数
+
+      同时需要设置 请求头 headers
+
+  </pre>
+
+  <script>
+
+    // fetch('http://localhost:3000/books', {
+    //   method: 'post',
+    //   body: 'uname=itcast&pwd=12345',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // }).then(function (data) {
+    //   return data.text()
+    // }).then(function (res) {
+    //   console.log(res)
+    // })
+
+    fetch('http://localhost:3000/books', {
+      method: 'post',
+      body: JSON.stringify({
+        uname: 'HEIMA',
+        pwd: 123
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(function (data) {
+      return data.text()
+    }).then(function (res) {
+      console.log(res)
+    })
+
+
+    // fetch('http://localhost:3000/books/12', {
+    //     method: 'put',
+    //     body: JSON.stringify({
+    //       uname: 'HEIMA',
+    //       pwd: 123
+    //     }),
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded'
+    //     }
+    //   }).then(function (data) {
+    //     return data.text()
+    //   }).then(function (res) {
+    //     console.log(res)
+    //   })
+
+  </script>
+</body>
+
+</html>

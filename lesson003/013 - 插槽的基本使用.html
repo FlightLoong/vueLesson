@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    默认插槽：
+    
+      就是在子组件模板中提供一个占位符 slot，
+      将子组件使用时包裹的内容展示到占位符区域
+
+      在模板中写一个 slot 标签就可以，这个标签是固定写法，是 Vue 给提供的
+      子组件中间有内容，slot 如果也有内容，那么会被覆盖 slot 中的路由，否则就展示 slot 中的内容
+  </pre>
+
+  <div id="app">
+    <p>{{name}}</p>
+    <button-counter>周杰伦，等你下课</button-counter>
+    <button-counter>周杰伦，说好不哭</button-counter>
+    <button-counter></button-counter>
+  </div>
+
+  <script>
+
+    Vue.component('button-counter', {
+      // 这里的 data 是一个方法，指的是当前组件私有的数据
+      data: function () {
+        return {
+          count: 1
+        }
+      },
+      // template 指组件的 UI 结构
+      template: `
+        <div>
+          <p>{{count}}</p>
+          <slot>222</slot>
+        </div>
+      `
+    })
+
+    // new Vue 实例本身就是一个组件
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Vue.js'
+      }
+    })
+  </script>
+</body>
+
+</html>

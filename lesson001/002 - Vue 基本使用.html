@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 2、引入 vue.js -->
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <!-- 1、创建页面结构 -->
+  <!-- 4、使用 Vue 提供的语法将数据填充到结构中 -->
+  <!-- {{}} -> 叫插值表达式 -->
+  <div id="box">姓名：{{ name }}</div>
+
+  <!-- 3、使用 Vue 提供的语法 -->
+  <script>
+    new Vue({
+      // 元素的挂载位置，即 Vue 接管的区域，哪块区域是 Vue 来进行管理
+      el: '#box',
+      // 模型数据，指的就是页面中使用的数据
+      data: {
+        name: 'Tom'
+      }
+    })
+  </script>
+</body>
+
+</html>

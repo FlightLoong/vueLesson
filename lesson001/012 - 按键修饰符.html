@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>按键修饰符</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    按键修饰符是对键盘事件进行的监听
+  </pre>
+
+  <div id="app">
+    <!-- .enter 回车键 -->
+    <input v-model="val" type="text" @keyup.enter="handle">
+
+    <!-- .delete 删除键 -->
+    <input v-model="reset" type="text" @keyup.delete="del">
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        val: '',
+        reset: ''
+      },
+      methods: {
+        handle() {
+          console.log(this.val)
+        },
+
+        del() {
+          console.log(this.reset)
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

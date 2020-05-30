@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <!-- 
+    样式可以直接使用之前 CSS 写法是可以的
+    如果样式类需要动态的绑定，这时候可以使用 V-bind
+   -->
+
+  <div class="app">
+    <!-- <div class="active"></div> -->
+
+    <!-- 对象方式，前面是类名， 后面是绝对前面类名显示与否的条件 -->
+    <div :class="{ active: isTrue }"></div>
+    <button @click="trueHandle">按钮</button>
+
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '.app',
+      data: {
+        isTrue: true
+      },
+      methods: {
+        trueHandle: function () {
+          this.isTrue = !this.isTrue
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+
+      1、Promise对象方法
+
+        Promise.all() -- 对并发的多个异步操作进行处理，它能够把所有异步操作结果返回
+        Promise.race()-- 对并发的多个异步操作进行处理， 它返回一个结果
+
+  </pre>
+
+  <script>
+
+    function getData(url) {
+      return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url)
+        xhr.send(null)
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState != 4) return;
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            resolve(xhr.responseText)
+          } else {
+            reject('错误')
+          }
+        }
+      })
+    }
+
+    var a1 = getData('http://localhost:3000/a1')
+    var a2 = getData('http://localhost:3000/a2')
+    var a3 = getData('http://localhost:3000/a3')
+
+    // Promise.all([a1, a2, a3]).then(function (result) {
+    //   console.log(result)
+    // })
+
+    Promise.race([a1, a2, a3]).then(function (result) {
+      console.log(result)
+    })
+
+  </script>
+</body>
+
+</html>

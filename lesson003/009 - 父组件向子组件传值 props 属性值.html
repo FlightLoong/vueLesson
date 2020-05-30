@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    1、props 属性值可以接收的类型
+      字符、数值、布尔、对象、数组
+
+    2、注意事项
+      如果属性不使用 v-bind 进行绑定，那么属性类型全是 string
+  </pre>
+
+  <!-- 父组件 -->
+  <div id="app">
+    <p>{{name}}</p>
+    <hello-world :str="str" :num="10" :bol="bol" :arr="arr" :obj="obj"></hello-world>
+  </div>
+
+  <script>
+
+    Vue.component('hello-world', {
+      props: ['str', 'num', 'bol', 'arr', 'obj'],
+      data: function () {
+        return {
+          msg: '亚瑟'
+        }
+      },
+      template: `<div>{{msg}} - {{str}} -- {{typeof num}} -- {{bol ? '真' :'假'}} -- {{obj.age}}</div>`
+    })
+
+    // new Vue 实例本身就是一个组件
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Vue.js',
+        str: '字符',
+        bol: false,
+        arr: ['1', '2', '3'],
+        obj: {
+          age: 10
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

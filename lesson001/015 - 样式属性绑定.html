@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定属性操作</title>
+  <script src="../vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    Mustache(双大括号 ) 语法不能作用在元素属性上，
+    如果想给元素属性动态绑定值，需要使用 v-bind 指令
+
+    v-bind 指令简写方式 " : ", " : " 后面跟上需要动态绑定值的属性
+  </pre>
+
+  <div id="app">
+    <p><a v-bind:href="url">百度</a></p>
+    <p><a :href="url">切换地址</a></p>
+    <p><button @click="toggle">绑定地址</button></p>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        url: 'http://www.baidu.com'
+      },
+      methods: {
+        toggle() {
+          this.url = 'http://pic.baidu.com/'
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

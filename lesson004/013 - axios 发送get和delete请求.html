@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+  <pre>
+    如果使用 axios 发送 get 请求，需要传递参数，需要是进行配置传递的参数，
+    那么 get 方法，第二个参数是一个对象，参数需要写到 params 对象中
+  </pre>
+
+  <script>
+
+    axios.get('http://localhost:3000/axios?id=3').then(function (res) {
+      console.log(res.data)
+    })
+
+    axios.get('http://localhost:3000/axios/4').then(function (res) {
+      console.log(res.data)
+    })
+
+    axios.get('http://localhost:3000/axios', {
+      params: {
+        id: 5
+      }
+    }).then(function (res) {
+      console.log(res.data)
+    })
+
+    axios.delete('http://localhost:3000/axios', {
+      params: {
+        id: 5
+      }
+    }).then(function (res) {
+      console.log(res.data)
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>数据绑定指令</title>
+</head>
+
+<body>
+  <pre>
+    1、v-text: 填充纯文本, 相比插值表达式更加简洁
+
+    2、v-html: 填充HTML片段，存在安全问题，本网站内部数据可以使用，来自第三方的数据不可以用
+      
+    3、v-pre：填充原始信息，显示原始信息，跳过编译过程（分析编译过程），了解即可
+
+  </pre>
+  <hr>
+
+  <div id="app">
+    <p v-text="msg"></p>
+    <p v-html="msg"></p>
+    <p v-pre>{{ msg }}</p>
+  </div>
+
+  <script src="./scripts/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '亚瑟'
+      }
+    })
+  </script>
+</body>
+
+</html>

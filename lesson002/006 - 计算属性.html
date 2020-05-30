@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .yanse {
+      background-color: lightcoral;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    ★★★★★
+
+    1、为什么需要计算属性，什么是计算属性
+
+      在模板中使用表达式非常的便捷，但是如果在其中写很多的逻辑代码，
+      那么程序就会非常难以维护，
+      插值表达式中诞生的目的是做一些简单的运算，
+      如果在里面写很多太复杂的逻辑，代码看起来非常冗余，缺少可读性
+
+      所以：就提供了计算属性，
+      目的：将表达式的代码进行提取，提取到计算属性中
+  </pre>
+
+  <div id="app">
+    <p>{{ num + 1 }}</p>
+    <p>{{str.split('').reverse().join('')}}</p>
+    <p>{{reverse}}</p>
+  </div>
+
+  <script>
+  
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        num: 1,
+        str: 'tomandjerry'
+      },
+      computed: {
+        reverse: function () {
+          return this.str.split('').reverse().join('')
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

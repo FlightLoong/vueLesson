@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    1、props 属性名的注意事项
+
+      ① 如果 props 属性名是驼峰写法，
+        那么在模板中需要使用中划线分隔的方式接收父组件传递数据
+        <hello-world menu-title="标题"></hello-world>
+
+      ② 如果 props 属性名是驼峰写法，那么在模板字符串中可以不更改为中划线写法
+        template: `<div><hello-js menuTip="tip"></hello-js></div>`
+
+      ③、如果记不住： 那么以后组件名称以及属性名称都使用中划线写法
+  </pre>
+
+  <!-- 父组件 -->
+  <div id="app">
+    <p>{{name}}</p>
+    <hello-world menu-title="标题"></hello-world>
+  </div>
+
+  <script>
+
+    Vue.component('hello-js', {
+      props: ['menuTip'],
+      data: function () {
+        return {
+          msg: '亚瑟'
+        }
+      },
+      template: `<div>{{msg}} -- {{menuTip}}</div>`
+    })
+
+    Vue.component('hello-world', {
+      props: ['menuTitle'],
+      data: function () {
+        return {
+          msg: '亚瑟'
+        }
+      },
+      template: `<div>{{msg}} -- {{menuTitle}} <hello-js menuTip="tip"></hello-js></div>`
+    })
+
+    // new Vue 实例本身就是一个组件
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Vue.js'
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./script/vue.js"></script>
+  <script src="./script/vue-router.js"></script>
+</head>
+
+<body>
+  <pre>
+    1. 引入相关的库文件
+    2. 添加路由链接
+    3. 添加路由填充位
+    4. 定义路由组件
+    5. 配置路由规则并创建路由实例
+    6. 把路由挂载到 Vue 根实例中
+  </pre>
+
+  <div id="app">
+
+    <!-- router-link 是 Vue-router 给提供的标签，在解析后就变成 a 标签 -->
+    <!-- to 属性指定需要跳转的地址，在解析后会成为 href ，同时会在 地址前面加上 #号 -->
+    <router-link to="/user/1">User</router-link>
+    <router-link to="/user/2">User</router-link>
+    <router-link to="/user/3">User</router-link>
+
+    <router-link to="/register">register</router-link>
+
+    <!-- 路由占位符也叫路由填充位 -->
+    <!-- router-view 是 Vue-router 给提供的标签 -->
+    <!-- 用来展示和路由匹配的组件 -->
+    <router-view></router-view>
+
+  </div>
+
+  <script>
+
+    var User = {
+      template: `
+        <div>用户登录页面 -- {{ $route.params.id }}</div>
+      `
+    }
+
+    var Register = {
+      template: `
+        <div>
+          <div>用户注册页面</div>
+
+          <router-link to="/register/mobile">手机登录</router-link>
+          <router-link to="/register/weixin">微信登录</router-link>
+
+          <router-view></router-view>
+        </div>
+      `
+    }
+
+    var Mobile = {
+      template: `
+        <div>手机登录组件</div>
+      `
+    }
+
+    var Weixin = {
+      template: `
+        <div>微信登录组件</div>
+      `
+    }
+
+    // 配置路由规则并创建路由实例
+    // 需要使用 VueRouter 创建路由实例，同时接受一个对象作为配置项
+    var router = new VueRouter({
+
+      // 这个属性用来定义路由的集合
+      // 易错点：是 routes 属性，不是 routers
+      routes: [
+        // path 代表路由规则
+        // component 代表的匹配的路由规则对应的组件
+        { path: '/', redirect: '/user' },
+        { path: '/user/:id', component: User },
+        {
+          path: '/register',
+          component: Register,
+          children: [
+            // { path: '/register/mobile', component: Mobile },
+            // { path: '/register/weixin', component: Weixin }
+
+            // 嵌套路由的简写方式，不要跟上父路由的 path 路径
+            // 注意事项，那么子路由前面也不要加斜线
+            { path: 'mobile', component: Mobile },
+            { path: 'weixin', component: Weixin }
+          ]
+        }
+      ]
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      // 在 Vue 实例中挂载 router 实例
+      router: router
+    })
+  </script>
+</body>
+
+</html>

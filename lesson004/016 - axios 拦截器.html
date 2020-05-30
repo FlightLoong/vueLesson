@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+
+  <pre>
+
+    项目中并不是必须的，而且看有没有对应的需求进行使用
+    包括全局配置，也是看有没有对应的需求进行使用
+
+    1、看接口文档，看是否需要某个字段
+    2、设置的统一的超时时间
+    3、get、post传递参数不一样，根据 get 、post 的不同，
+       进行统一封装处理 传递{ params: { id: 3 } }, {}
+    4、其他
+
+  </pre>
+
+  <script>
+
+    // 添加请求拦截器
+    // 在发送 ajax 请求之前，
+    // 对 请求地址、请求头等信息进行修改
+    // 修改后，必须 return 修改后的配置
+    axios.interceptors.request.use(function (config) {
+      console.log(config)
+      // 例如 后台要求每个接口的请求头必须有 mytoken 这个字段，
+      // 没有就不能返回数据，这时候，就可以将 所有的请求进行拦截
+      // 返回添加一个请求头 token, 后台让加在加，否则不用加，
+      // 例如： mytoken ，后台接口需要 mytoken 那么必须加
+      config.headers.mytoken = 'heima'
+      return config
+    }, function (err) {
+      console.log(err)
+    })
+
+    // json  字符串
+
+    // 添加响应拦截器 
+    // 这时候后台已经返回了数据，但是数据不符合咱们的需求
+    // 这时候，就需要对数据数据进行修改，修改成满足我们需要的格式
+    // 同样，也是需要将处理好的数据进行 return 
+    axios.interceptors.response.use(function (result) {
+      result = result.data
+      return result
+    }, function (err) {
+      console.log(err)
+    })
+
+    axios.get('http://localhost:3000/adata').then(function (res) {
+      console.log(res)
+    })
+
+  </script>
+</body>
+
+</html>

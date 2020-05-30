@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <pre>
+
+    1、什么是 fetch 
+
+      fetch 是前后端交互的一种新的语法，不同于 XMLHttpRequest，
+      可以看成是 XMLHttpRequest 升级版本，它是基于 Promise 进行开发的
+
+      【说白了， fetch 就是 XMLHttpRequest 和 Promise 的共同的产物】
+
+    2、 fetch 基础使用
+
+      fetch 是一个方法，写法都是固定
+      fetch 方法中接收一个 请求的地址作为参数：fetch('http://localhost:3000/fdata')
+      需要调用两次 .then 方法
+
+      第一次调用 then 方法返回的是 Promise 实例对象，注意，这个 .then 是必须要有的
+      第二次调用 then 方法返回的才是 实例对象 的结果
+
+  </pre>
+
+  <script>
+    fetch('http://localhost:3000/fdata')
+      .then(function (data) {
+        // 这里的 text() 是 fetch 方法本身就提供的 api
+        // 返回一个被解析后的 Promise 对象和数据.
+        return data.text()
+      })
+      .then(function (data) {
+        console.log(data)
+      })
+  </script>
+</body>
+
+</html>

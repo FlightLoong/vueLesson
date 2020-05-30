@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>{{pmsg}}</div>
+    <menu-item title='来自父组件的值' content="tom"></menu-item>
+    <menu-item :title='ptitle' content='jerry'></menu-item>
+  </div>
+
+  <script>
+    // 父组件向子组件传值-基本使用
+    Vue.component('menu-item', {
+      props: ['title', 'content'],
+      data: function () {
+        return {
+          msg: '泰克'
+        }
+      },
+      template: '<div>{{msg + "----" + title + "-----" + content}}</div>'
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        pmsg: '斯派克',
+        ptitle: '动态绑定属性'
+      }
+    })
+  </script>
+</body>
+
+</html>

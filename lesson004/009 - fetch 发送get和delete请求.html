@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+
+    fetch 发送 get 和 delete 请求
+      如果是传统的 URL 地址，那么参数直接写到 url 后面就可以，
+      不需要显示的配置 get 请求方式
+
+      那么如果是 restFul 格式的地址，
+      那么 fetch 第二个参数就是一个对象，是一个配置项
+      
+        fetch(`请求的URL地址`, config)
+
+      config 里面可以写 键值对的形式
+
+        例如： { method: 'get' } { method: 'delete' }
+
+  </pre>
+
+  <script>
+
+    // 发送 get
+
+    // fetch('http://localhost:3000/books?id=2')
+    // .then(function (data) {
+    //   return data.text()
+    // })
+    // .then(function (res) {
+    //   console.log(res)
+    // })
+
+    // fetch('http://localhost:3000/books/3', {
+    //   method: 'get'
+    // })
+    //   .then(function (data) {
+    //     return data.text()
+    //   })
+    //   .then(function (res) {
+    //     console.log(res)
+    //   })
+
+    fetch('http://localhost:3000/books/3', {
+      method: 'delete'
+    })
+      .then(function (data) {
+        return data.text()
+      })
+      .then(function (res) {
+        console.log(res)
+      })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div class="app">
+    <!-- 
+      有三个参数
+        1、对象的属性值
+        2、对象的键
+        3、索引
+     -->
+    <p v-for="(value, key, index) in obj">{{index + 1}}、{{key}} --- {{ value }}</p>
+
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '.app',
+      data: {
+        obj: {
+          title: 'How to do lists in Vue',
+          author: 'Jane Doe',
+          publishedAt: '2016-04-10'
+        }
+      },
+      methods: {
+        
+      }
+    })
+  </script>
+
+</body>
+
+</html>

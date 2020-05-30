@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+
+    ★★
+
+    1、Vue 对数组方法进行了进一步的处理，处理好之后，能够让操作后的数据，
+      具有响应式的功能，能够触发视图的更新，
+
+      这个响应式指的，数据更新能够触发视图更新，页面能够响应数据的变化
+      
+
+    2、把数组方法处理好之后，就分成了两类
+
+      ① 变异方法：就是直接对原数组进行操作，进行更新
+        push()
+        pop()
+        shift()
+        unshift()
+        splice()
+        sort()
+        reverse()
+
+      ② 替换数组：替换数组会生成一个新的数组
+
+        filter()
+        concat()
+        slice()
+
+  </pre>
+
+  <div id="app">
+    <input type="text" v-model="value">
+    <button @click="add">按钮</button>
+    <button @click="concat">按钮</button>
+    <ul>
+      <li v-for="(item, index) in arr" :key="index">{{item}}</li>
+    </ul>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        value: '',
+        arr: [1, 2, 3, 4],
+        newArr: [5, 6, 7, 8]
+      },
+      methods: {
+        add: function () {
+          // push 是一个变异方法：直接对原数组进行操作
+          // 从而实现响应式操作
+          this.arr.push(this.value)
+          console.log(this.arr.length)
+        },
+
+        concat: function () {
+          // concat 是替换数组：替换数组会生成一个新的数组，
+          // 所以不会产生响应式效果，需要再次赋值给原数组才可以
+          this.arr = this.arr.concat(this.newArr)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

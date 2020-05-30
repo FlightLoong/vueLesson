@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+    data.text()  --- 会将后台返回的数据处理成字符串的格式
+    data.json()  --- 将后台返回的数据，处理成 标准的 json 数据
+  </pre>
+
+  <script>
+
+    fetch('http://localhost:3000/json').then(function (data) {
+      // return data.text()
+      return data.json()
+    }).then(function (res) {
+      console.log(res)
+      // console.log(JSON.parse(res))
+    })
+
+  </script>
+</body>
+
+</html>

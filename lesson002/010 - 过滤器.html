@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    ★★★★★
+
+    1. 什么是过滤器
+      对文本值、时间等进行格式化的方法
+
+    2. 两个定义方法
+      全局定义  -- Vue.xxx
+      局部定义  -- filters
+
+    3. 全局定义
+      ① 需要挂载 Vue 上面，Vue.filter ，不带 s
+      ② 有两个参数 ，第一个参数是 过滤器的名称， 第二个参数是 一个方法
+        方法中有个参数，这个参数就是指所需要处理的数据
+      ③ 函数内部需要 有 return，需要有返回值
+      ④ 如果需要使用多个过滤器，直接使用竖线分隔 | ，后面跟上另一个过滤器名称就可以
+
+    4. 局部定义 
+
+      filters: {}
+  </pre>
+
+  <div id="app">
+    <p>{{ msg | upper }}</p>
+    <p>{{ msg | upper | lower }}</p>
+  </div>
+
+  <script>
+
+    // Vue.filter('upper', function (value) {
+    //   console.log(value)
+    //   return value.charAt(0).toUpperCase() + value.slice(1)
+    // })
+
+    Vue.filter('lower', function (value) {
+      console.log(value)
+      return value.charAt(0).toLowerCase() + value.slice(1)
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'world'
+      },
+      filters: {
+        upper: function (value) {
+          return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

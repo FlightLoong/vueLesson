@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+
+    如果是兄弟组件之间传值，需要创建一个事件中心，这个事件中心说白了就是在创建一个实例
+    咱们将事件绑定到这个实例上
+
+  </pre>
+
+  <div id="app">
+    <div>父组件</div>
+    <xiongda></xiongda>
+    <xionger></xionger>
+  </div>
+
+  <script>
+    /*
+      兄弟组件之间数据传递
+    */
+
+    // 第一步： 创建事件中心
+    var bus = new Vue()
+    
+    Vue.component('xiongda', {
+      data: function () {
+        return {
+          num: 0
+        }
+      },
+      template: `
+        <div>
+          <div>熊大:{{num}}</div>
+          <div>
+            <button @click="handle">点击</button>
+          </div>
+        </div>
+      `,
+      methods: {
+        handle: function () {
+          bus.$emit('bigHanle', 2)
+        }
+      },
+      mounted () {
+        bus.$on('small', (val) => {
+          this.num += val
+        })
+      }
+    });
+
+    Vue.component('xionger', {
+      data: function () {
+        return {
+          num: 0
+        }
+      },
+      template: `
+        <div>
+          <div>熊二:{{num}}</div>
+          <div>
+            <button @click="smallHanle">点击</button>
+          </div>
+        </div>
+      `,
+      methods: {
+        smallHanle:  function () {
+          bus.$emit('small', 1)
+        }
+      },
+      mounted() {
+        bus.$on('bigHanle', (val) => {
+          this.num += val
+        })
+      }
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+      }
+    });
+  </script>
+</body>
+
+</html>

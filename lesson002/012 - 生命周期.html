@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+
+    ★★★★★★★★★★
+
+    1、生命周期
+
+      Vue 实例在被创建时都要经过一系列的初始化过程，
+      这个过程包括在页面在挂载 - 页面更新 -- 实例销毁的过程
+
+    2、生命周期钩子
+
+      所谓的生命周期钩子：就是指实例在某个阶段，Vue 在这个阶段提供的方法，
+      。就是钩子，也叫钩子函数，具体叫：生命周期钩子函数
+
+    3、生命周期函数有三个阶段
+
+      ① 创建阶段 
+        beforeCreate
+        created
+        beforeMount
+        mounted: 
+
+      ② 运行阶段
+        beforeUpdate
+        updated
+
+      ③ 销毁阶段
+        beforeDestroy
+        destroyed
+
+    4、生命周期总共有 8 个函数
+
+  </pre>
+
+  <div id="app">
+
+    <p>{{ msg }}</p>
+    <button @click="update">更新</button>
+    <button @click="destroy">销毁</button>
+
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '生命周期'
+      },
+      methods: {
+        update: function () {
+          this.msg = 'hello'
+        },
+        destroy: function () {
+          this.$destroy()
+        }
+      },
+      beforeCreate: function () {
+        console.log('beforeCreate')
+      },
+      created: function () {
+        console.log('created')
+      },
+      beforeMount: function () {
+        console.log('beforeMount')
+      },
+      mounted: function () {
+        console.log('mounted')
+      },
+      beforeUpdate: function () {
+        console.log('beforeUpdate')
+      },
+      updated: function () {
+        console.log('updated')
+      },
+      beforeDestroy: function () {
+        console.log('beforeDestroy')
+      },
+      destroyed: function () {
+        console.log('destroyed')
+      }
+    })
+  </script>
+</body>
+
+</html>

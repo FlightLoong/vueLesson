@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .current {
+      background-color: lightblue;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    什么是作用域插槽
+
+      场景：父组件对子组件的内容进行调整修改
+
+      父组件获取子组件的数据，
+        ① 在子组件内部写一个 slot，给 slot 使用 v-bind 绑定需要传递的数据
+        ② 在子组件标签内部，给元素加上 slot-scope 加上属性，接收 slot 传递的值
+
+      从而对子组件内容进行调整的
+
+        可以在子组件标签内部使用 {{}} 来查看 传递过来的值。从而进行修改
+
+    如果是自己写的组件，可以自己调整，
+    但是一般子组件模板写好之后，就不会在进行改变，这时候只能在调用的位置修改
+
+  </pre>
+
+  <div id="app">
+    <hello :list="list">
+      <template slot-scope="msgInfo">
+        <li class="current" v-if="msgInfo.msg.id === 2">{{msgInfo.msg.name}}</li>
+        <li v-else>{{msgInfo.msg.name}}</li>
+      </template>>
+    </hello>
+  </div>
+
+  <script>
+
+    Vue.component('hello', {
+      props: ['list'],
+      data: function () {
+        return {
+          name: 'son'
+        }
+      },
+      template: `
+        <div>
+          <ul>
+            <li v-for="item in list">
+              <slot :msg="item">{{item.name}}</slot>
+            </li>
+          </ul>
+        </div>
+      `
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        list: [
+          {
+            id: 1,
+            name: '三国演义'
+          },
+          {
+            id: 2,
+            name: '水浒传'
+          },
+          {
+            id: 3,
+            name: '西游记'
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

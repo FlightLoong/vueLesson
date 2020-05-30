@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    1. 子组件需要使用 $emit() 发送一个自定义事件，这个事件类似于 click，
+       只不过是咱们自己自定义的 @click="$emit('sonhandle')"
+
+    2. 父组件使用 v-on 接收自定义的事件，@自定义事件，它需要对应父级中的一个方法，
+        @sonhandle="parentHan"
+  </pre>
+
+  <!-- 父组件 -->
+  <div id="app">
+    <p>{{name}}</p>
+    <son @sonhandle="parentHan($event)"></son>
+  </div>
+
+  <script>
+    Vue.component('son', {
+      data: function () {
+        return {
+          age: 3,
+          value: 4
+        }
+      },
+      template: `
+        <div>
+          <button @click="$emit('sonhandle', { age, value })">按钮</button>
+        </div>
+      `
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: '子组件向父组件传值'
+      },
+      methods: {
+        parentHan: function (params) {
+          console.log(params)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

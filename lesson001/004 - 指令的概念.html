@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>指令概念与v-cloak指令</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <pre>
+    1、什么是指令 ？
+      指令的本质就是自定义属性，
+      vue 中的指令是 Vue 自带，自己提供的，当然也可以自己定义
+      vue 中指令的格式：以 v- 开始 (v-cloak)
+
+    2、v-cloak 的作用
+      使用插值表达式存在的问题：闪动，先展示 {{ }}， 然后再显示数据
+      如何解决该问题：使用 v-cloak 指令
+      v-cloak 的原理：使用 css 的 display 属性，先将元素隐藏，然后在内存中进行值的替换，替换好值之后在显示最终的值
+
+  </pre>
+  <hr>
+
+  <div id="app">
+    <div v-cloak>{{ msg }}</div>
+  </div>
+
+  <script src="./scripts/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '亚瑟 ！'
+      }
+    })
+  </script>
+</body>
+
+</html>

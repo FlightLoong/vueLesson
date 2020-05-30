@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .yanse {
+      background-color: lightcoral;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    ★★★★★
+
+    1、 侦听器是什么东西
+    
+      侦听器就是用来对 data 中的数据进行监听，
+      当数据发生改变之后，就会触发 watch 中绑定的方法
+      
+      在侦听器方法中就可以获取到更新之后的最新值以及老的值
+      
+      用来用一些异步操作和复杂的运算
+    
+    
+    2、侦听器注意事项
+    
+      ① 侦听器 也是和 data 同级进行声明 一个 watch
+
+      ② 侦听器的属性不能随便写，需要是 data 中的数据，也就是对谁进行监听，就写谁
+    
+      ③ 在回调函数中，有两个参数
+        第一个参数是更新之后的值，也就是最新的值
+        第二个参数是更新之前的值，也就是老的值
+  </pre>
+
+  <div id="app">
+    <p>数量：<input type="text" v-model.number="appleNum"></p>
+    <p>价格：<input type="text" v-model.number="applePrice"></p>
+    <p>总价: {{allPrice}}</p>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        appleNum: '',
+        applePrice: '',
+        allPrice: ''
+      },
+      watch: {
+        // 对谁进行监听，那么属性就写谁
+        // newVal 最新值，oldVal 之前的值
+        appleNum: function (newVal, oldVal) {
+          this.allPrice = this.applePrice * newVal
+        },
+
+        applePrice: function (newVal, oldVal) {
+          this.allPrice = newVal * this.appleNum
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

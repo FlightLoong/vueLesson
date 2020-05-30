@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+
+  <script>
+    // async 和 await 虽然是异步操作，但是能让你感觉到是在做同步的操作
+    async function getUrl() {
+      var res1 = await axios.get('http://localhost:3000/async1')
+      var res2 = await axios.get(`http://localhost:3000/async2?info=${res1.data}`)
+      // var res3 = await axios.get(`http://localhost:3000/async3?info=${res.data}`)
+
+      console.log(res2)
+    }
+
+    getUrl()
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    具名插槽： 具有名字的插槽
+
+    在创建 slot 标签的时候，给 slot 标签添加一个 name 属性
+    那么在子组件中间创建内容的时候，给 html 标签添加一个 slot 属性,
+    这个 slot属性 对应一个 具有同名称的 slot 标签，并将内容显示到其中
+  </pre>
+
+  <div id="app">
+    <button-counter>
+      <div slot="header">
+        <h4>我是头部</h4>
+      </div>
+
+      <div>
+        <p>静夜思</p>
+      </div>
+
+      <div slot="footer">
+        <h5>我是页脚</h5>
+      </div>
+
+      <div>
+        <p>床前明月光</p>
+      </div>
+    </button-counter>
+  </div>
+
+  <script>
+
+    Vue.component('button-counter', {
+      // 这里的 data 是一个方法，指的是当前组件私有的数据
+      data: function () {
+        return {
+          count: 1
+        }
+      },
+      // template 指组件的 UI 结构
+      template: `
+        <div>
+          <header>
+            <slot name="header"></slot>
+          </header>
+
+          <main>
+            <slot></slot>
+          </main>
+
+          <footer>
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      `
+    })
+
+    // new Vue 实例本身就是一个组件
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        name: 'Vue.js'
+      }
+    })
+  </script>
+</body>
+
+</html>

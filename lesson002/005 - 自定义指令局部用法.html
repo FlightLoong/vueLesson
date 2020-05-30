@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .yanse {
+      background-color: lightcoral;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input class="yanse" type="text" v-color="bgc" v-focus>
+  </div>
+
+  <script>
+
+    // 全局指令
+    // Vue.directive('color', {
+    //   bind: function (el, binding) {
+    //     console.log(binding)
+    //     el.style.backgroundColor = binding.value
+    //   }
+    // })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        bgc: 'lightgreen'
+      },
+      // 局部指令定义的方式
+      directives: {
+        color: {
+          bind: function (el, binding) {
+            console.log(binding)
+            el.style.backgroundColor = binding.value
+          }
+        },
+        focus: {
+          inserted: function (el) {
+            el.focus()
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件绑定的基础用法</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    一、如何定义事件
+      使用 v-on 指令绑定事件，
+      简写方式以 @ 符号开头，@ 后跟事件名，事件对应一个事件处理函数，
+      事件处理函数，写的实例的 methods 中
+
+    二、事件中的 this
+      事件处理函数中的 this 代表 vue 实例
+
+  </pre>
+
+  <div id="app">
+    <div>
+      <button v-on:click="num++">点击</button>
+      <button @click="num++">点击+1</button>
+      <button @click="handle">点击+1</button>
+      <button @click="handle()">点击+1</button>
+    </div>
+
+    <div>{{ num }}</div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        num: 0
+      },
+      methods: {
+        handle() {
+          console.log(this)
+          this.num++
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

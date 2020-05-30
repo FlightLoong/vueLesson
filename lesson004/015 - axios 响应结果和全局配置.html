@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+
+  <pre>
+    axios 全局配置
+
+      axios.defaults.timeout = 'xxxx'  // 前端向后台请求数据，如果超过 3 秒之后，数据还没有返回，那么就会提示接口超时
+      axios.defaults.baseURL = 'xxxx'  // baseURL 设置接口的根路径
+      axios.defaults.headers['xxxx'] = '12345'  // 对请求头进行设置，一般主要设置 token
+
+  </pre>
+
+  <script>
+
+    axios.defaults.timeout = '3000' // 是前端向后台请求数据，如果超过 3 秒之后，数据还没有返回，那么就会提示接口超时
+
+    axios.defaults.baseURL = 'http://localhost:3000'  // baseURL 设置接口的根路径
+
+    axios.defaults.headers['mytoken'] = '12345'   // 对请求头进行设置，一般主要设置 token
+
+    // token 是什么 ？ 就是一种 HTTP 会话机制，一把用来验证用户有没有登录
+    axios.get('/axios-json').then(function (res) {
+      console.log(res)
+    })
+
+  </script>
+</body>
+
+</html>

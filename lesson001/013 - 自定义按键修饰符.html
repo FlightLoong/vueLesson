@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义按键修饰符</title>
+  <script src="../vue.js"></script>
+</head>
+<body>
+
+  <pre>
+    一、事件绑定 - 自定义按键修饰符
+      系统给提供的按键修饰符不能满足日常的需求，这时候就需要自定义按键修饰符
+      规则：自定义按键修饰符名字是自定义的，但是对应的值必须是按键 event.keyCode 值
+
+      语法：通过全局 config.keyCodes 对象自定义按键修饰符别名
+
+    二、如何获取键值码
+      事件对象.keyCode
+    
+  </pre>
+
+  <div id="app">
+    <input v-model="val" type="text" v-on:keyup.a="handle">
+  </div>
+
+  <script>
+
+    Vue.config.keyCodes.a = 65
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        val: '',
+        reset: ''
+      },
+      methods: {
+        handle(event) {
+          console.log(event.keyCode)
+          console.log(this.val)
+        }
+      }
+    })
+  </script>
+</body>
+</html>

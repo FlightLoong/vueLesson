@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+    在事件处理程序中调用 event.preventDefault() 或 event.stopPropagation() 是非常常见的需求。
+    尽管我们可以在方法中轻松实现这点，但更好的方式是：方法只有纯粹的数据逻辑，而不是去处理 DOM 事件细节。
+
+    所以：Vue.js 为 v-on 提供了事件修饰符，修饰符是由点开头的指令后缀来表示的。
+  </pre>
+
+  <div id="app">
+    <div @click="handle">
+      <!-- .stop 阻止事件冒泡 -->
+      <button @click.stop="btnFunc">按钮</button>
+    </div>
+
+    <div>
+      <!-- .prevent 阻止默认行为 -->
+      <a @click.prevent href="http://www.baidu.com">百度一下,你就知道</a>
+    </div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        num: '亚瑟'
+      },
+      methods: {
+        handle() {
+          console.log('父盒子触发')
+        },
+
+        btnFunc() {
+          console.log('按钮触发') // 打印结果先触发按钮，再触发盒子
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

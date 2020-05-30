@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./scripts/axios.js"></script>
+</head>
+
+<body>
+  <pre>
+
+    一、async 和 await -- 回调地狱终极解决方案
+
+      ① es7 新语法
+      ② async 和 await -- 底层是对 Promise 再次进行了封装
+      ③ async 一般用来修饰函数，一般放在函数名前面
+      ④ async 和 await 必须结合使用
+      ⑤ await 一般防在异步操作前面
+          async getIndex() {
+            var res1 = await axios.get('xxx1')
+            var res2 = await axios.get('xxx2')
+            var res3 = await axios.get('xxx3')
+
+            console.log()
+          }
+
+      二、如果 async 修饰的函数内部，将结果 return 了出来，
+        那么 return 出来的结果，是一个 异步的 Promise 实例
+        那么在外部就需要通过 then 的方式获取到返回值
+
+  </pre>
+
+  <script>
+    async function getUrl() {
+      const res = await axios.get('http://localhost:3000/data')
+      console.log(res.data)
+
+      // this.msg = res
+      return res
+    }
+
+    getUrl().then(function (data) {
+      console.log(data)
+    })
+
+  </script>
+</body>
+
+</html>

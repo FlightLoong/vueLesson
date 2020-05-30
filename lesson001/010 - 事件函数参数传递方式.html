@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>事件函数参数传递方式</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <pre>
+    事件绑定 - 事件传参
+
+    1、传递参数，在函数调用的方法中声明实参，在函数处理程序中声明形参
+    2、如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数
+    3、如果事件绑定函数调用，并传递了参数，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须是 $event
+  </pre>
+
+
+  <div id="app">
+    <div>
+      <!-- 如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数 -->
+      <button @click="handle">事件传参</button>
+      
+      <!-- 如果事件绑定函数调用，并传递了参数，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称必须是 $event -->
+      <button @click="func(1, 2, $event)">事件传参</button>
+    </div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        num: 0
+      },
+      methods: {
+        handle(e) {
+          console.log(e)
+        },
+        func(a, b, e) {
+          console.log(a)
+          console.log(b)
+          console.log(e)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

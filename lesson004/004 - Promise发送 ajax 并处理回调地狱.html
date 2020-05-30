@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <pre>
+    Promise 不能发送请求，它只是处理异步回调问题的
+  </pre>
+
+  <script>
+
+    function getData(url) {
+      var result = new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', url)
+        xhr.send(null)
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState != 4) return;
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            resolve(xhr.responseText)
+          } else {
+            reject('错误')
+          }
+        }
+      })
+
+      return result
+    }
+
+    // getData('http://localhost:3000/data').then(function (data) {
+    //   console.log(data)
+    // }, function (err) {
+    //   console.log(err)
+    // })
+
+    // 演示发送多个 ajax 并保证执行的顺序
+    getData('http://localhost:3000/data').then(function (data) {
+      return getData('http://localhost:3000/data1')
+    }).then(function (data) {
+      return getData('http://localhost:3000/data2')
+    }).then(function (data) {
+      console.log(data)
+    })
+  </script>
+</body>
+
+</html>

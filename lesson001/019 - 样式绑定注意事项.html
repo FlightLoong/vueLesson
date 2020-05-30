@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      width: 100px;
+      height: 100px;
+      background-color: lightcoral;
+    }
+
+    .border {
+      border: 2px solid lightseagreen;
+    }
+
+    .height {
+      height: 300px;
+    }
+  </style>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+    1、绑定样式 数组和对象可以结合使用
+    2、绑定样式简写方式，简写的方式直接对类名进行操作，之前是对 data 属性操作
+    3、默认样式怎么显示，会和绑定的样式进行合并，并不会出现覆盖不显示样式的情况
+   -->
+
+  <div class="app">
+    <div :class="[isActive, { border: isTrue }]"></div>
+    <div :class="classArr"></div>
+    <div class="height" :class="classObj"></div>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '.app',
+      data: {
+        isActive: 'active',
+        isTrue: true,
+        classArr: ['active', 'border'],
+        classObj: {
+          active: true,
+          border: true
+        }
+      },
+      methods: {}
+    })
+  </script>
+
+</body>
+
+</html>

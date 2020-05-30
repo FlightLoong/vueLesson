@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="./scripts/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- number 是将输入框里面的值转为数值型 -->
+    <p><input type="text" v-model.number="age"></p>
+
+    <!-- trim 是去掉左右两侧的空格，注意：中间的去不掉 -->
+    <p><input type="text" v-model.trim="trimVal"></p>
+
+    <!-- lazy 就是将 Input 事件转成 change 事件， -->
+    <!-- Input 事件时时触发，只要输入值，就能够执行 -->
+    <!-- change 是等输入框失去焦点的时候，进行触发 -->
+    <p><input type="text" v-model.lazy="lazyVal"></p>
+    <p>{{lazyVal}}</p>
+
+    <button @click="inputHandle">按钮</button>
+  </div>
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        age: 18,
+        trimVal: '',
+        lazyVal: ''
+      },
+      methods: {
+        inputHandle: function () {
+          console.log(this.lazyVal)
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
